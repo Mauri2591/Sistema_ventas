@@ -74,11 +74,11 @@ switch ($_GET['op']) {
         }
         break;
 
-    case 'update_usuario':
-        $usu->update_usuario($_POST['usu_id'], $_POST['usu_email'], $_POST['usu_pass']);
-        break;
-
     case 'delete_usuario':
         $usu->delete_usuario($_POST['usu_id']);
+        break;
+
+    case 'update_usuario':
+        $usu->update_usuario($_POST['usu_id'], $_POST['usu_email'], $_POST['usu_pass']);
         break;
 }

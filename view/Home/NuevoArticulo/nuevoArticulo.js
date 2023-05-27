@@ -14,7 +14,12 @@ function insert_articulo(e) {
     e.preventDefault();
     var formData = new FormData($("#form_articulos")[0]);
     if ($('#nom_prod').val() == '' || $('#marca_prod').val() == '' || $('#descrip_prod').val() == '') {
-        confirm("Error, todos los campos deben estar completos")
+        swal({
+            title: "Error",
+            text: "Debe llenar todos los campos!",
+            icon: "warning",
+            button: "Volver",
+          });
     } else {
         $.ajax({
             url: "../../../controller/articulos.php?op=insert_articulo",
@@ -23,7 +28,12 @@ function insert_articulo(e) {
             contentType: false,
             processData: false,
             success: function (data) {
-                alert("ok, datos guardados")
+                swal({
+                    title: "Bien",
+                    text: "Artículo guardado correctamente!",
+                    icon: "success",
+                    button: "Volver",
+                  });
                 $('#nom_prod').val('');
                 $('#marca_prod').val('');
                 $('#descrip_prod').summernote('reset');

@@ -1,6 +1,7 @@
-var tabla;
+function init() {
+}
 
-function init() {}
+var tabla;
 
 $(document).ready(function () {
     $(document).ready(function () {
@@ -33,7 +34,7 @@ $(document).ready(function () {
             "bDestroy": true,
             "responsive": true,
             "bInfo": true,
-            "iDisplayLength": 6, //cantidad de tuplas o filas a mostrar
+            "iDisplayLength": 5, //cantidad de tuplas o filas a mostrar
             "autoWith": false,
             "language": {
                 "sProcessing": "Procesando..",
@@ -80,14 +81,23 @@ $(document).ready(function () {
 });
 
 function btnElim(id_prod) {
-    if (confirm(`Desea eliminar el producto n°  ${id_prod}?`) == true) {
-        $.post("../../controller/articulos.php?op=delete_articulo", {
-            id_prod: id_prod
-        }, function (data, textStatus, jqXHR) {
-
+    swal({
+            title: "Desea eliminar este artículo?",
+            text: "Una vez eliminado no podrá vovler atrás!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.post("../../controller/articulos.php?op=delete_articulo", {id_prod: id_prod},
+                function (data, textStatus, jqXHR) {});
+                swal("Artículo eliminado correctamente!", {
+                    icon: "success",
+                });
+                $('#myTable').DataTable().ajax.reload();
+            }
         });
-        $('#myTable').DataTable().ajax.reload();
-    }
 }
 
 function getProd(id_prod) {
@@ -98,27 +108,53 @@ function getProd(id_prod) {
     };
     ruta = "../Public/Imagenes/";
     img = document.getElementById("ver_img_art");
-    $.post("../../controller/articulos.php?op=getProd", {id_prod: id_prod}, function (data, textStatus, jqXHR) {
+    $.post("../../controller/articulos.php?op=getProd", {
+        id_prod: id_prod
+    }, function (data, textStatus, jqXHR) {
         data = JSON.parse(data);
+        console.log(data);
         $("#mostrar_id").html(data.id_prod);
         $("#ver_nom_prod").val(data.nom_prod);
         $("#ver_marca_prod").val(data.marca_prod);
         $("#ver_descrip_prod").val(data.descrip_prod);
         img.setAttribute("src", ruta + data.art_img);
-    }, 
-    );
+    }, );
 }
 
-// function btnEdit(id_prod) {
-//     $('#modal_edit_art').modal('show');
-//     if ($('.modal-backdrop').is(':visible')) {
-//         $('body').removeClass('modal-open');
-//         $('.modal-backdrop').remove();
-//         nom_prod = $("#nom_prod").val();
-//         descrip_prod = $("#descrip_prod").val();
-//         console.log(nom_prod + "\n" + descrip_prod);
-//         console.log(id_prod);
-//     };
-// }
+function editArt() {
+    id_prod = $("#mostrar_id").html();
+    nom_prod = $("#ver_nom_prod").val();
+    marca_prod = $("#ver_marca_prod").val();
+    descrip_prod = $("#ver_descrip_prod").val();
+    if (nom_prod == '' || marca_prod == '' || descrip_prod == '') {
+        swal({
+            title: "Error",
+            text: "Campos vacíos",
+            icon: "warning",
+            button: "Volver",
+        });
+    } else {
+        $.ajax({
+            url: "../../controller/articulos.php?op=update_articulo",
+            type: "post",
+            data: {
+                id_prod: id_prod,
+                nom_prod: nom_prod,
+                marca_prod: marca_prod,
+                descrip_prod: descrip_prod,
+            },
+            success: function () {
+                swal({
+                    title: "Bien",
+                    text: "Artículo editado correctamente!",
+                    icon: "success",
+                    button: "Volver",
+                });
+                $("#modal_edit_art").modal('hide');
+                $('#myTable').DataTable().ajax.reload();
+            },
+        });
+    }
+}
 
 init();

@@ -6,34 +6,36 @@ if (isset($_SESSION['usu_id'])) {
 ?>
     <title>Sistema de ventas</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="../Public/css/style.css">
     </head>
 
     <body>
-        <?php 
-        echo "Usuario ". $_SESSION['nombre_rol'] .": ". $_SESSION['usu_nom'] . " " . $_SESSION['usu_ape'] ?>
         <div class="container">
-            <ul class="nav justify-content-end">
+            <ul class="navegacion">
                 <?php if ($_SESSION['usu_rol'] == 2) :  ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="MantenimientoUsuario/">Mantenimiento Usuario</a>
+                    <li class="li_nav">
+                        <a class="a_nav" href="MantenimientoUsuario/">Mantenimiento Usuario</a>
                     </li>
                 <?php endif; ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="NuevoArticulo/">Cargar Articulo</a>
+                <li class="li_nav">
+                    <a class="a_nav" href="../Home/MantenimientoUsuario/consultarUsuario.php">Usuarios</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../Home/MantenimientoUsuario/consultarUsuario.php">Mantenimiento Usuario</a>
+                <li class="li_nav">
+                    <a class="a_nav" href="../Home/MantenimientoCliente/consultarCliente.php">Clientes</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="LogOut/">Salir</a>
+                <li class="li_nav">
+                    <a class="a_nav" href="NuevoArticulo/">Alta de Articulo</a>
+                </li>
+                <li class="li_nav">
+                    <a class="a_nav" href="LogOut/">Salir</a>
                 </li>
             </ul>
         </div>
         <h1 class="text-center">Artículos</h1>
         <div class="container">
-        <?php require_once("./NuevoArticulo/modalEditArt.php");?>
+        <?php require_once("./NuevoArticulo/modalEditArt.php"); ?>
 
-            <div class="container-fluid text-center d-flex justify-content-center mt-5 border p-5 border border-secondary">
+            <div class="container-fluid text-center d-flex justify-content-center mt-2 border p-5 border border-secondary">
                 <table id="myTable" class="display border border-light">
                     <thead>
                         <tr>
@@ -64,8 +66,9 @@ if (isset($_SESSION['usu_id'])) {
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
         <script src="main.js"></script>
 
-    </body>
 
+        <?php echo "Usuario " . $_SESSION['nombre_rol'] . ": " . $_SESSION['usu_nom'] . " " . $_SESSION['usu_ape'] ?>
+    </body>
     </html>
 <?php
 } else {

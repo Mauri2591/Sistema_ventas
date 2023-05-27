@@ -31,12 +31,13 @@ class Articulos extends Conexion
         return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getProd($id_prod){
-        $conn= parent::conexion();
+    public function getProd($id_prod)
+    {
+        $conn = parent::conexion();
         parent::setNames();
-        $sql= "SELECT * FROM tm_producto WHERE id_prod=?";
-        $stmt=$conn->prepare($sql);
-        $stmt->bindValue(1,$id_prod,PDO::PARAM_INT);
+        $sql = "SELECT * FROM tm_producto WHERE id_prod=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $id_prod, PDO::PARAM_INT);
         $stmt->execute();
         $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $resul;
@@ -53,7 +54,7 @@ class Articulos extends Conexion
         $resul = $stmt->fetch();
         return $resul;
     }
-    public function get_articulo($id_prod,$nom_prod,$descrip_prod)
+    public function get_articulo($id_prod, $nom_prod, $descrip_prod)
     {
         $conn = parent::conexion();
         parent::setNames();
@@ -66,14 +67,16 @@ class Articulos extends Conexion
         $resul = $stmt->fetch();
         return $resul;
     }
-    public function update_articulo($id_prod,$nom_prod,$descrip_prod){
-        $conn= parent::conexion();
+    public function update_articulo($id_prod, $nom_prod, $marca_prod, $descrip_prod)
+    {
+        $conn = parent::conexion();
         parent::setNames();
-        $sql='UPDATE tm_producto SET nom_prod=?,marca_prod=?,descrip_prod=?';
-        $stmt=$conn->prepare($sql);
-        $stmt->bindValue(1,$id_prod,PDO::PARAM_INT);
-        $stmt->bindValue(2,$nom_prod,PDO::PARAM_STR);
-        $stmt->bindValue(3,$descrip_prod,PDO::PARAM_STR);
+        $sql = 'UPDATE tm_producto SET nom_prod=?,marca_prod=?,descrip_prod=? WHERE id_prod = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $nom_prod, PDO::PARAM_STR);
+        $stmt->bindValue(2, $marca_prod, PDO::PARAM_STR);
+        $stmt->bindValue(3, $descrip_prod, PDO::PARAM_STR);
+        $stmt->bindValue(4, $id_prod, PDO::PARAM_INT);
         $stmt->execute();
         $resul = $stmt->fetch();
         echo json_encode($resul);

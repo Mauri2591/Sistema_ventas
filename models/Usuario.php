@@ -83,6 +83,16 @@ class Usuario extends Conexion
         $stmt->execute();
         return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function delete_usuario($usu_id)
+    {
+        $conn = parent::conexion();
+        parent::setNames();
+        $sql = "DELETE FROM tm_usuario WHERE usu_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $usu_id);
+        $stmt->execute();
+        $resul = $stmt->fetch();
+    }
     public function update_usuario($usu_id, $usu_email, $usu_pass)
     {
         $conn = parent::conexion();
@@ -96,13 +106,4 @@ class Usuario extends Conexion
         $stmt->execute();
         echo json_encode($stmt);
     }
-public function delete_usuario($usu_id){
-    $conn=parent::conexion();
-    parent::setNames();
-    $sql="DELETE FROM tm_usuario WHERE usu_id=?";
-    $stmt=$conn->prepare($sql);
-    $stmt->bindValue(1,$usu_id);
-    $stmt->execute();
-    $resul=$stmt->fetch();
-}
 }

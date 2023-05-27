@@ -6,33 +6,29 @@ if (isset($_SESSION['usu_id'])) {
 ?>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <title>Sistema de ventas</title>
+    <link rel="stylesheet" href="../../Public/css/style.css">
     </head>
 
     <body>
-        <?php
-        echo "Usuario " . $_SESSION['nombre_rol'] . ": " . $_SESSION['usu_nom'] . " " . $_SESSION['usu_ape'] ?>
         <div class="container">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link" href="../MantenimientoUsuario/consultarUsuario.php">Consultar Usuarios</a>
+        <ul class="navegacion nuevoArt">
+                <li class="li_nav">
+                    <a class="a_nav" href="./consultarUsuario.php">Volver</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../index.php">Volver</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../LogOut/">Salir</a>
+                <li class="li_nav">
+                    <a class="a_nav" href="../LogOut/">Salir</a>
                 </li>
             </ul>
         </div>
         <h1 class="text-center">Crear Usuario</h1>
 
         <!------------------------   Inicio Formulario         -------------------------------->
-        <div class="container col-6">
-            <div class="container-fluid justify-content-center mt-5 border p-3">
+        <div class="container col-6 p-5">
+            <div class="justify-content-center mt-5 border border-success p-5">
 
                 <form class="form-inline" action="" method="post" id="form_nuevo_usu">
                     <div class="container mb-3 mt-2">
-                        <input type="text" class="form-control mb-2 mr-sm-4 col-4" placeholder="Ingrese email" id="usu_email" name="usu_email">
+                        <input type="text" autofocus class="form-control mb-2 mr-sm-4 col-4" placeholder="Ingrese email" id="usu_email" name="usu_email">
                         <input type="text" class="form-control mb-2 mr-sm-4 col-6" minlength="8" maxlength="12" placeholder="Ingrese password" id="usu_pass" name="usu_pass">
                         <div class="form-group"><span>Tipo:</span>
                             <select class="form-control" id="usu_rol" name="usu_rol">
@@ -57,6 +53,7 @@ if (isset($_SESSION['usu_id'])) {
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
         <script src="nuevoUsuario.js"></script>
 
+        <?php echo "Usuario " . $_SESSION['nombre_rol'] . ": " . $_SESSION['usu_nom'] . " " . $_SESSION['usu_ape'] ?>
     </body>
 
     </html>

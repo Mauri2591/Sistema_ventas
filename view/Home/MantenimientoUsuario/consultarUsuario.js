@@ -31,7 +31,7 @@ $(document).ready(function () {
         "bDestroy": true,
         "responsive": true,
         "bInfo": true,
-        "iDisplayLength": 8, //cantidad de tuplas o filas a mostrar
+        "iDisplayLength": 7, //cantidad de tuplas o filas a mostrar
         "autoWith": false,
         "language": {
             "sProcessing": "Procesando..",
@@ -83,41 +83,60 @@ function editUsu() {
     usu_id = $("#usu_id_edit").val();
     usu_email = $("#usu_email_editar").val();
     usu_pass = $("#usu_pass_editar").val();
-    $.ajax({
-        url: "../../../controller/usuario.php?op=update_usuario",
-        type: "post",
-        data: {
-            usu_id: usu_id,
-            usu_email: usu_email,
-            usu_pass: usu_pass
-        },
-        success: function (data, textStatus, jqXHR) {
-            console.log(data);
-            console.log(textStatus);
-        }
-    });
+    if (usu_email == '' || usu_pass == '') {
+        swal({
+            title: "Error",
+            text: "Campos vacíos",
+            icon: "warning",
+            button: "Volver",
+        });
+    } else {
+        $.ajax({
+            url: "../../../controller/usuario.php?op=update_usuario",
+            type: "post",
+            data: {
+                usu_id: usu_id,
+                usu_email: usu_email,
+                usu_pass: usu_pass
+            },
+            success: function (data, textStatus, jqXHR) {
+                swal({
+                    title: "Bien",
+                    text: "Usuario editado correctamente!",
+                    icon: "success",
+                    button: "Volver",
+                });
+                $("#myModal").modal('hide');
+                $('#tabla_usuarios').DataTable().ajax.reload();
+            }
+        });
+    }
+
 }
 
 function delUsu(usu_id) {
-    function preguntar() {
-        if (confirm("¿Está seguro que desea eliminar el usuario?")) {
-            $.ajax({
-                url: "../../../controller/usuario.php?op=delete_usuario",
-                type: "post",
-                data: {
-                    usu_id: usu_id
-                },
-                success: function confirm(data, textStatus, jqXHR) {
-                    alert("Borrado correctamente");
-                    $("#myModal").modal("hide");
-                    tabla.ajax.reload();
-                }
-            });
-        } else {
-            return false;
-        }
-    }
-preguntar();
+    swal({
+            title: "Desea eliminar este usuario?",
+            text: "Una vez eliminado no podrá volver atrás",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: "../../../controller/usuario.php?op=delete_usuario",
+                    type: "post",
+                    data: {
+                        usu_id: usu_id
+                    }
+                });
+                swal("Usuario eliminado correctamente", {
+                    icon: "success",
+                });
+                $('#tabla_usuarios').DataTable().ajax.reload();
+            }
+        });
 }
 
 init();

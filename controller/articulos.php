@@ -55,11 +55,10 @@ switch ($_GET['op']) {
 
     case 'get_articulo':
         if (isset($_POST)) {
-            $datos = $articulo->update_articulo($_POST['id_prod'], $_POST['nom_prod'], $_POST['descrip_prod']);
+            $datos = $articulo->update_articulo($_POST['id_prod'],$_POST['nom_prod'],$_POST['marca_prod'],$_POST['descrip_prod']);
         }
         break;
+
     case 'update_articulo':
-        if (isset($_POST)) {
-            $datos = $articulo->update_articulo($_POST['id_prod'], $_POST['nom_prod'], $_POST['descrip_prod']);
-            }
+            $articulo->update_articulo($_POST['id_prod'],$_POST['nom_prod'],$_POST['marca_prod'],$_POST['descrip_prod']);
 }
