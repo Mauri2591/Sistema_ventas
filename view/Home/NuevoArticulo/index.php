@@ -17,29 +17,30 @@ if (isset($_SESSION['usu_id'])) {
                 <li class="li_nav">
                     <a class="a_nav" href="../index.php">Volver</a>
                 </li>
-                <li class="li_nav">
+                <!-- <li class="li_nav">
                     <a class="a_nav" href="../LogOut/">Salir</a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <h1 class="text-center">Crear Artículo</h1>
 
         <!------------------------   Inicio Formulario         -------------------------------->
-        <div class="container col-6 ">
-            <div class="container-fluid justify-content-center mt-5 border p-3 border border-secondary p-5">
+        <div class="container col-6">
+            <div class="container-fluid justify-content-center mt-5 border border border-secondary p-5">
 
                 <form class="form-inline" action="" method="post" id="form_articulos" enctype="multipart/form-data">
-                    <div class="container mb-3 mt-2">
-                        <input type="text" class="form-control mb-2 mr-sm-4 col-4" placeholder="Nombre Producto" id="nom_prod" name="nom_prod">
-                        <input type="text" class="form-control mb-2 mr-sm-4 col-6" placeholder="Marca Producto" id="marca_prod" name="marca_prod">
-                        <input type="file" width="25" height="25" name="art_img" id="art_img" accept="image/jpej, image/png">
+                    <div class="container mb-3 mt-2 col-12">
+                        <input type="text" class="form-control col-4" placeholder="Nombre Producto" id="nom_prod" name="nom_prod">
+                        <input type="text" class="form-control col-4" placeholder="Marca Producto" id="marca_prod" name="marca_prod">
+                        <input type="text" class="form-control col-4" placeholder="Precio Producto" id="precio_prod" name="precio_prod">
+                        <input type="file" width="25" class="mt-3" height="25" name="art_img" id="art_img" accept="image/jpej, image/png">
                     </div>
                     <div class="container mt-2">
                         <textarea id="descrip_prod" name="descrip_prod"></textarea>
                     </div>
                     <div class="container mt-1">
                         <input type="hidden" id="usu_id" name="usu_id" value="<?php echo $_SESSION['usu_id'] ?>">
-                        <button type="submit" class="btn btn-primary mb-2">Ingresar</button>
+                        <button type="submit" class="btn btn-primary mb-2">Guardar</button>
                     </div>
                 </form>
 

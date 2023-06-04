@@ -28,7 +28,7 @@ class Usuario extends Conexion
                     $_SESSION['usu_ape'] = $result['usu_ape'];
                     $_SESSION['usu_rol'] = $result['usu_rol'];
                     $_SESSION['nombre_rol'] = $result['nombre_rol'];
-                    header("Location:" . Conexion::ruta() . "view/Home");
+                    header("Location:" . Conexion::ruta() . "view/Home/MantenimientoVentas/");
                     return $result;
                     exit();
                 } else {
@@ -105,5 +105,46 @@ class Usuario extends Conexion
         $stmt->bindValue(3, $usu_id);
         $stmt->execute();
         echo json_encode($stmt);
+    }
+
+    public function insert_cobrador($nom_cobrador,$ape_cobrador,$cel_cobrador){
+        $conn= parent::conexion();
+        parent::setNames();
+        $sql="INSERT INTO tm_cobrador (id_cobrador, nom_cobrador, ape_cobrador, cel_cobrador,est) VALUES (NULL, ?,?,?,1)";
+        $stmt=$conn->prepare($sql);
+        $stmt->bindValue(1,$nom_cobrador,PDO::PARAM_STR);
+        $stmt->bindValue(2,$ape_cobrador,PDO::PARAM_STR);
+        $stmt->bindValue(3,$cel_cobrador,PDO::PARAM_STR);
+        $stmt->execute();
+        return $resul = $stmt->fetch();
+    }
+
+    public function get_cobradores(){
+        $conn= parent::conexion();
+        parent::setNames();
+        $sql="SELECT * FROM tm_cobrador WHERE est=1 ORDER BY id_cobrador desc";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insert_vendedor($nom_vendedor,$ape_vendedor,$cel_vendedor){
+        $conn= parent::conexion();
+        parent::setNames();
+        $sql= "INSERT INTO tm_vendedor(id_vendedor, nom_vendedor, ape_vendedor, cel_vendedor,est) VALUES (NULL,?,?,?,1)";
+        $stmt=$conn->prepare($sql);
+        $stmt->bindValue(1,$nom_vendedor,PDO::PARAM_STR);
+        $stmt->bindValue(2,$ape_vendedor,PDO::PARAM_STR);
+        $stmt->bindValue(3,$cel_vendedor,PDO::PARAM_STR);
+        $stmt->execute();
+        return $resul = $stmt->fetch();
+    }
+    public function get_vendedores(){
+        $conn= parent::conexion();
+        parent::setNames();
+        $sql= "SELECT * FROM tm_vendedor WHERE est=1";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

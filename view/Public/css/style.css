@@ -1,17 +1,21 @@
-:root{
-    --colorBtnNav : rgb(191, 230, 255);
+:root {
+    --colorBtnNav: rgb(191, 230, 255);
 }
-.navegacion{
+
+.navegacion {
+    width: 100%;
     display: flex;
+    justify-content: space-evenly;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    margin: 10px 0;
+    margin: 5px 0;
 }
-.nuevoArt{
+
+.nuevoArt {
     justify-content: end;
 }
-.li_nav{
+
+.li_nav {
     display: flex;
     list-style: none;
     justify-content: center;
@@ -19,22 +23,79 @@
     width: 180px;
     height: 40px;
 }
-.a_nav{
+
+.a_nav {
     font-size: 18px;
     font-weight: bold;
 }
-.li_nav:hover{
+
+.li_nav:hover {
     font-size: 18px;
     cursor: pointer;
-   background-color: var(--colorBtnNav);
-   border-radius: 5px;
+    background-color: var(--colorBtnNav);
+    border-radius: 5px;
 }
-.a_nav:hover{
+
+.a_nav:hover {
     display: flex;
     text-align: center;
     align-items: center;
     text-decoration: none;
 }
+
 .p-5 {
     padding: 8px !important;
+}
+
+.btn_get_client {
+    height: 33px;
+    width: 500px;
+    outline: none;
+    margin-left: 20px;
+    font-weight: 700;
+    border: .5px solid #64ff9d;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.btn_get_client:hover {
+    background-color: #b1ffcd;
+    color: rgb(29, 29, 29);
+    transition: .3s;
+}
+
+#btn_get_art {
+    height: 33px;
+    width: 130px;
+    border: none;
+    margin-left: 10px;
+    font-weight: 700;
+    border: 1px solid #00bfd8;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+#btn_get_art:hover {
+    background-color: #00bfd8;
+    color: white;
+    transition: .3s;
+}
+
+.btn_quitar_venta {
+    height: 32px;
+    width: 35px;
+    border: none;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    border: 1px solid #dc3545;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn_quitar_venta:hover {
+    background-color: #ffc0c9;
+    color: white;
+    transition: .3s;
 }

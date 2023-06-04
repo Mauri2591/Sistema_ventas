@@ -10,7 +10,7 @@ switch ($_GET['op']) {
         if (isset($_FILES['art_img'])) {
             // var_dump($_FILES['art_img']);
             !is_dir($dir_img) ? mkdir($dir_img) : ''; /*if ternario, si no existe la ruta que la cree*/
-            $datos = $articulo->insert_articulo($_POST['usu_id'], $_POST['nom_prod'], $_POST['marca_prod'], $_POST['descrip_prod'], $_FILES['art_img']);
+            $datos = $articulo->insert_articulo($_POST['usu_id'], $_POST['nom_prod'], $_POST['marca_prod'], $_POST['descrip_prod'],$_POST['precio_prod'], $_FILES['art_img']);
         }
         break;
 
@@ -24,6 +24,7 @@ switch ($_GET['op']) {
             $sub_array[] = $row['nom_prod'];
             $sub_array[] = $row['marca_prod'];
             $sub_array[] = $row['descrip_prod'];
+            $sub_array[] = $row['precio_prod'];
             $sub_array[] = '<img width="55" height="55" src="' . $dir_img . $row['art_img'] . '" alt="">';
             $sub_array[] = '<div class="btn-group"><button type="button" id="btnEdit" onClick="getProd('.$row['id_prod'].')" class="btn btn-warning">Editar</button><button type="button" id="btnElim" onClick="btnElim(' . $row['id_prod'] . ')" class="btn btn-danger">Eliminar</button></div>';
             $data[] = $sub_array;
@@ -44,6 +45,7 @@ switch ($_GET['op']) {
             $output['nom_prod'] = $row['nom_prod'];
             $output['marca_prod'] = $row['marca_prod'];
             $output['descrip_prod'] = $row['descrip_prod'];
+            $output['precio_prod'] = $row['precio_prod'];
             $output['art_img'] = $row['art_img'];
         }
         echo json_encode($output);
@@ -55,10 +57,10 @@ switch ($_GET['op']) {
 
     case 'get_articulo':
         if (isset($_POST)) {
-            $datos = $articulo->update_articulo($_POST['id_prod'],$_POST['nom_prod'],$_POST['marca_prod'],$_POST['descrip_prod']);
+            $datos = $articulo->update_articulo($_POST['id_prod'],$_POST['nom_prod'],$_POST['marca_prod'],$_POST['descrip_prod'],$_POST['precio_prod']);
         }
         break;
 
     case 'update_articulo':
-            $articulo->update_articulo($_POST['id_prod'],$_POST['nom_prod'],$_POST['marca_prod'],$_POST['descrip_prod']);
+            $articulo->update_articulo($_POST['id_prod'],$_POST['nom_prod'],$_POST['marca_prod'],$_POST['descrip_prod'],$_POST['precio_prod']);
 }

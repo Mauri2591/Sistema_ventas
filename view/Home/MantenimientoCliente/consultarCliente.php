@@ -4,7 +4,11 @@ if (isset($_SESSION['usu_id'])) {
     require_once("../../Head/index.php");
     require_once("../../Public/Plugins/Css.php");
 ?>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../plantilla/css/lib/datatables-net/datatables.min.css">
+    <link rel="stylesheet" href="../../plantilla/css/separate/vendor/datatables-net.min.css">
+    <link rel="stylesheet" href="../../plantilla/css/lib/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="../../plantilla/css/lib/bootstrap/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../../plantilla/css/main.css"> -->
     <title>Sistema de ventas</title>
     <link rel="stylesheet" href="../../Public/css/style.css">
     </head>
@@ -12,63 +16,73 @@ if (isset($_SESSION['usu_id'])) {
     <body>
         <div class="container">
             <ul class="navegacion">
-                <li class="li_nav">
-                    <a class="a_nav" href="./index.php">Alta de Cliente</a>
+            <li class="li_nav">
+                    <a class="a_nav" href="./index.php">Alta Cliente</a>
                 </li>
                 <li class="li_nav">
                     <a class="a_nav" href="../index.php">Inicio</a>
                 </li>
-                <li class="li_nav">
+                <!-- <li class="li_nav">
                     <a class="a_nav" href="../LogOut/">Salir</a>
-                </li>
+                </li> -->
             </ul>
         </div>
-        <h1 class="text-center">Consultar Cliente</h1>
+        <h1 class="text-center">Consultar Clientes</h1>
 
         <!------------------------   Inicio Tabla         -------------------------------->
-        <div class="container">
-            <div class="text-center justify-content-center border border-secondary p-5 mt-5">
-                <table id="tabla_clientes" class="display">
+        <section class="card">
+            <div class="card-block">
+                <table id="tabla_cliente" class="display table table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th class="tr_table text-center" style="width: 1%;">ID</th>
-                            <th class="tr_table text-center" style="width: 5%;">Nombre</th>
-                            <th class="tr_table text-center" style="width: 3%;">Apellido</th>
-                            <th class="tr_table text-center" style="width: 3%;">DNI</th>
-                            <th class="tr_table text-center" style="width: 3%;">CUIL</th>
-                            <th class="tr_table text-center" style="width: 3%;">Tel</th>
-                            <th class="tr_table text-center" style="width: 3%;">Celular</th>
-                            <th class="tr_table text-center" style="width: 3%;">Localidad</th>
-                            <th class="tr_table text-center" style="width: 3%;">Dirección</th>
-                            <th class="tr_table text-center" style="width: 5%;">Email</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>CUIL</th>
+                            <th>Localidad</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Cel</th>
+                            <th>Email</th>
+                            <th>Otros</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td id="client_id"></td>
                             <td id="client_nom"></td>
                             <td id="client_ape"></td>
                             <td id="client_dni"></td>
-                            <td id="client_cuil"></td>
-                            <td id="client_tel"></td>
-                            <td id="client_cel"></td>
+                            <th id="client_cuil"></th>
                             <td id="client_localidad"></td>
-                            <th id="client_dire"></th>
-                            <th id="client_email"></th>
-                            <!-- <th>Acción</th> -->
+                            <td id="client_dire"></td>
+                            <td id="client_tel"></td>
+                            <th id="client_cel"></th>
+                            <td id="client_email"></td>
+                            <td id="client_otros_datos"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
         <!------------------------   Fin Tabla         -------------------------------->
 
-        <?php require("./editarCliente.php") ?>
+        <?php require("editarCliente.php") ?>
 
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+        <script src="../../plantilla/js/lib/jquery/jquery.min.js"></script>
+        <script src="../../plantilla/js/lib/tether/tether.min.js"></script>
+        <script src="../../plantilla/js/lib/bootstrap/bootstrap.min.js"></script>
+        <script src="../../plantilla/js/plugins.js"></script>
+
+        <script src="../../plantilla/js/lib/datatables-net/datatables.min.js"></script>
+        <script>
+            $(function() {
+                $('#tabla_cliente').DataTable();
+            });
+        </script>
+
+        <script src="js/app.js"></script></script>
+
+        <script type="text/javascript" src="getClientes.js"></script>
 
         <div class="usu_sesion">
             <?php echo "Usuario " . $_SESSION['nombre_rol'] . ": " . $_SESSION['usu_nom'] . " " . $_SESSION['usu_ape'] ?>

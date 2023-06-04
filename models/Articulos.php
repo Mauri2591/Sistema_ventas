@@ -3,11 +3,11 @@
 class Articulos extends Conexion
 {
 
-    public function insert_articulo($usu_id, $nom_prod, $marca_prod, $descrip_prod, $art_img)
+    public function insert_articulo($usu_id, $nom_prod, $marca_prod, $descrip_prod, $precio_prod, $art_img)
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = "call in_prod(?,?,?,?,?)";
+        $sql = "call in_prod(?,?,?,?,?,?)";
         $dir_img = "../view/Public/Imagenes";/*ruta de las imágenes*/
         $art_img = md5(uniqid(rand(), true)) . ".jpg";
         move_uploaded_file($_FILES['art_img']['tmp_name'], $dir_img . "/" . $art_img); /*Inserto la imagen en la carpeta*/
@@ -16,7 +16,8 @@ class Articulos extends Conexion
         $stmt->bindValue(2, $nom_prod, PDO::PARAM_STR);
         $stmt->bindValue(3, $marca_prod, PDO::PARAM_STR);
         $stmt->bindValue(4, $descrip_prod, PDO::PARAM_STR);
-        $stmt->bindValue(5, $art_img);
+        $stmt->bindValue(5, $precio_prod);
+        $stmt->bindValue(6, $art_img);
         $stmt->execute();
         return $resul = $stmt->fetch();
     }
@@ -54,29 +55,31 @@ class Articulos extends Conexion
         $resul = $stmt->fetch();
         return $resul;
     }
-    public function get_articulo($id_prod, $nom_prod, $descrip_prod)
+    public function get_articulo($id_prod, $nom_prod, $descrip_prod, $precio_prod)
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = 'UPDATE tm_producto SET nom_prod, marca_prod,descrip_prod WHERE id_prod = ?;';
+        $sql = 'UPDATE tm_producto SET nom_prod, marca_prod,descrip_prod,precio_prod WHERE id_prod = ?;';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $id_prod, PDO::PARAM_INT);
         $stmt->bindValue(2, $nom_prod, PDO::PARAM_STR);
         $stmt->bindValue(3, $descrip_prod, PDO::PARAM_STR);
+        $stmt->bindValue(4, $precio_prod);
         $stmt->execute();
         $resul = $stmt->fetch();
         return $resul;
     }
-    public function update_articulo($id_prod, $nom_prod, $marca_prod, $descrip_prod)
+    public function update_articulo($id_prod, $nom_prod, $marca_prod, $descrip_prod, $precio_prod)
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = 'UPDATE tm_producto SET nom_prod=?,marca_prod=?,descrip_prod=? WHERE id_prod = ?';
+        $sql = 'UPDATE tm_producto SET nom_prod=?,marca_prod=?,descrip_prod=?,precio_prod=? WHERE id_prod = ?';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $nom_prod, PDO::PARAM_STR);
         $stmt->bindValue(2, $marca_prod, PDO::PARAM_STR);
         $stmt->bindValue(3, $descrip_prod, PDO::PARAM_STR);
-        $stmt->bindValue(4, $id_prod, PDO::PARAM_INT);
+        $stmt->bindValue(4, $precio_prod, PDO::PARAM_INT);
+        $stmt->bindValue(5, $id_prod);
         $stmt->execute();
         $resul = $stmt->fetch();
         echo json_encode($resul);

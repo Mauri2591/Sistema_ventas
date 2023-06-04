@@ -13,7 +13,7 @@ $(document).ready(function () {
 function insert_articulo(e) {
     e.preventDefault();
     var formData = new FormData($("#form_articulos")[0]);
-    if ($('#nom_prod').val() == '' || $('#marca_prod').val() == '' || $('#descrip_prod').val() == '') {
+    if ($('#nom_prod').val() == '' || $('#marca_prod').val() == '' || $('#descrip_prod').val() == '' || $('#precio_prod').val() == '') {
         swal({
             title: "Error",
             text: "Debe llenar todos los campos!",
@@ -36,6 +36,7 @@ function insert_articulo(e) {
                   });
                 $('#nom_prod').val('');
                 $('#marca_prod').val('');
+                $('#precio_prod').val('');
                 $('#descrip_prod').summernote('reset');
             },
         });

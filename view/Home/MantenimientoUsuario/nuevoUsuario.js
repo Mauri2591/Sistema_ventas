@@ -9,15 +9,18 @@ $(document).ready(function () {
     }, );
 });
 
-
-
 function nuevoUsuario(e) {
     e.preventDefault();
     let form = document.getElementById("form_nuevo_usu");
     let formData = new FormData(form);
-    if ($("#usu_email").val() == '' || $("#usu_pass").val().length < 8 || $("#usu_pass").val().length > 12) {
-        confirm("Error. Respete la cantidad de caracteres permitidos");
-    }else{
+    if ($("#usu_email").val() == '' || $("#usu_pass").val() == '') {
+        swal({
+            title: "Error!",
+            text: "Hay campos vacíos!",
+            icon: "warning",
+            button: "Volver!",
+        });
+    } else {
         $.ajax({
             url: "../../../controller/usuario.php?op=insert_usuario",
             type: "post",
@@ -25,12 +28,16 @@ function nuevoUsuario(e) {
             contentType: false,
             processData: false,
             success: function (response) {
-                alert("Creado correctamente");
-                window.location.reload();
+                swal({
+                    title: "Bien!",
+                    text: "Usuario creado correctamente!",
+                    icon: "success",
+                    button: "Volver!",
+                });
+                $("#form_nuevo_usu")[0].reset();
             },
         });
     }
-    
-}
 
+}
 init();

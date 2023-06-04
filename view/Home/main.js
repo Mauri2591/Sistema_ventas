@@ -34,7 +34,7 @@ $(document).ready(function () {
             "bDestroy": true,
             "responsive": true,
             "bInfo": true,
-            "iDisplayLength": 5, //cantidad de tuplas o filas a mostrar
+            "iDisplayLength": 4, //cantidad de tuplas o filas a mostrar
             "autoWith": false,
             "language": {
                 "sProcessing": "Procesando..",
@@ -117,6 +117,7 @@ function getProd(id_prod) {
         $("#ver_nom_prod").val(data.nom_prod);
         $("#ver_marca_prod").val(data.marca_prod);
         $("#ver_descrip_prod").val(data.descrip_prod);
+        $("#ver_precio_prod").val(data.precio_prod);
         img.setAttribute("src", ruta + data.art_img);
     }, );
 }
@@ -126,7 +127,8 @@ function editArt() {
     nom_prod = $("#ver_nom_prod").val();
     marca_prod = $("#ver_marca_prod").val();
     descrip_prod = $("#ver_descrip_prod").val();
-    if (nom_prod == '' || marca_prod == '' || descrip_prod == '') {
+    precio_prod = $("#ver_precio_prod").val();
+    if (nom_prod == '' || marca_prod == '' || descrip_prod == '' || precio_prod == '') {
         swal({
             title: "Error",
             text: "Campos vacíos",
@@ -141,6 +143,7 @@ function editArt() {
                 id_prod: id_prod,
                 nom_prod: nom_prod,
                 marca_prod: marca_prod,
+                precio_prod : precio_prod,
                 descrip_prod: descrip_prod,
             },
             success: function () {

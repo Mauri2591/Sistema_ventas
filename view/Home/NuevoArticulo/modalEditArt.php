@@ -13,12 +13,14 @@
                     <form action="" method="post" id="form_editar_art">
                         <input type="hidden">
                         <div class="text-center mt-3"><label for="ver_nom_prod"><strong>Nombre Artículo</strong></label></div>
-                        <input type="text" class="form-control mb-2 mr-sm-4 col-12 bg-light" placeholder="Nombre Producto" id="ver_nom_prod" name="nom_prod">
+                        <input type="text" class="form-control mb-1 mr-sm-4 col-12 bg-light" id="ver_nom_prod" name="nom_prod">
                         <div class="text-center"><label for="ver_marca_prod" class="text-center"><strong>Marca Artículo</strong></label></div>
-                        <input type="text" class="form-control mb-2 mr-sm-4 col-12 bg-light" placeholder="Marca Producto" id="ver_marca_prod" name="marca_prod">
+                        <input type="text" class="form-control mb-1 mr-sm-4 col-12 bg-light" id="ver_marca_prod" name="marca_prod">
+                        <div class="text-center"><label for="ver_marca_prod" class="text-center"><strong>Precio Artículo</strong></label></div>
+                        <input type="text" class="form-control mb-1 mr-sm-4 col-12 bg-light" id="ver_precio_prod" name="ver_precio_prod">
                         <div class="text-center"><label for="ver_descrip_prod" class="text-center"><strong>Descripción Artículo</strong></label></div>
                         <div class="container mt-2">
-                            <div class="text-center"><textarea style="resize: none;" class="bg-light" id="ver_descrip_prod" cols="57" rows="5" name="descrip_prod"></textarea></div>
+                            <div class="text-center"><textarea style="resize: none;" class="bg-light" id="ver_descrip_prod" cols="50" rows="4" name="descrip_prod"></textarea></div>
                         </div>
                         <div>
                             <div class="text-center"><label for="art_img"><strong>Cambiar Imagen</strong></label></div>

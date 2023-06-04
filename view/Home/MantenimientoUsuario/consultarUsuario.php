@@ -18,9 +18,9 @@ if (isset($_SESSION['usu_id'])) {
                 <li class="li_nav">
                     <a class="a_nav" href="../index.php">Inicio</a>
                 </li>
-                <li class="li_nav">
+                <!-- <li class="li_nav">
                     <a class="a_nav" href="../LogOut/">Salir</a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <h1 class="text-center">Consultar Usuario</h1>

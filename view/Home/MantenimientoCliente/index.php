@@ -1,6 +1,7 @@
 <?php
 require_once("../../../config/Conexion.php");
 if (isset($_SESSION['usu_id'])) {
+
     require_once("../../Head/index.php");
     require_once("../../Public/Plugins/Css.php");
 ?>
@@ -24,12 +25,12 @@ if (isset($_SESSION['usu_id'])) {
 
         <!------------------------   Inicio Formulario         -------------------------------->
         <div class="container col-6">
-            <div class="mt-5 border border-success p-5">
+            <div class="mt-5 border border-secondary p-5 bg-light">
                 <form class="p-5" method="post" id="form_client">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Nombre/s</label>
-                            <input type="text" class="form-control" autofocus placeholder="Ingrese Nombre" id="client_nom" name="client_nom">
+                            <label for="inputEmail4">Nombre/s *</label>
+                            <input type="text" class="form-control"  autofocus placeholder="Ingrese Nombre" id="client_nom" name="client_nom">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Apellido/s</label>
@@ -48,16 +49,16 @@ if (isset($_SESSION['usu_id'])) {
                             <input type="text" class="form-control" placeholder="Ingrese Localidad" id="client_localidad" name="client_localidad">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputAddress2">Dirección</label>
-                            <input type="text" class="form-control" placeholder="Ingrese Dirección" id="client_dire" name="client_dire">
+                            <label for="inputAddress2">Dirección *</label>
+                            <input type="text" class="form-control"  placeholder="Ingrese Dirección" id="client_dire" name="client_dire">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress2">Teléfono</label>
                             <input type="text" class="form-control" placeholder="Ingrese Teléfono" id="client_tel" name="client_tel">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputAddress2">Celular</label>
-                            <input type="text" class="form-control" placeholder="Ingrese Celular" id="client_cel" name="client_cel">
+                            <label for="inputAddress2">Celular *</label>
+                            <input type="text" class="form-control"  placeholder="Ingrese Celular" id="client_cel" name="client_cel">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress2">Email</label>
@@ -76,8 +77,7 @@ if (isset($_SESSION['usu_id'])) {
 
         <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="./main.js"></script>
 
         <?php echo "Usuario " . $_SESSION['nombre_rol'] . ": " . $_SESSION['usu_nom'] . " " . $_SESSION['usu_ape'] ?>
