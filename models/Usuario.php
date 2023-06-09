@@ -119,15 +119,6 @@ class Usuario extends Conexion
         return $resul = $stmt->fetch();
     }
 
-    public function get_cobradores(){
-        $conn= parent::conexion();
-        parent::setNames();
-        $sql="SELECT * FROM tm_cobrador WHERE est=1 ORDER BY id_cobrador desc";
-        $stmt=$conn->prepare($sql);
-        $stmt->execute();
-        return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     public function insert_vendedor($nom_vendedor,$ape_vendedor,$cel_vendedor){
         $conn= parent::conexion();
         parent::setNames();
@@ -139,6 +130,7 @@ class Usuario extends Conexion
         $stmt->execute();
         return $resul = $stmt->fetch();
     }
+
     public function get_vendedores(){
         $conn= parent::conexion();
         parent::setNames();
@@ -146,5 +138,34 @@ class Usuario extends Conexion
         $stmt=$conn->prepare($sql);
         $stmt->execute();
         return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function get_cobradores(){
+        $conn= parent::conexion();
+        parent::setNames();
+        $sql="SELECT * FROM tm_cobrador WHERE est=1 ORDER BY id_cobrador desc";
+        $stmt=$conn->prepare($sql);
+        $stmt->execute();
+        return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function selec_vendedor($id_vendedor){
+        $conn= parent::conexion();
+        parent::setNames();
+        $sql= "SELECT id_vendedor, nom_vendedor FROM tm_vendedor WHERE id_vendedor=? AND est=1";
+        $stmt=$conn->prepare($sql);
+        $stmt->bindValue(1,$id_vendedor,PDO::PARAM_INT);
+        $stmt->execute();
+        return $resul = $stmt->fetch();
+    }
+
+    public function select_cobrador($id_cobrador){
+        $conn=parent::conexion();
+        parent::setNames();
+        $sql= "SELECT id_cobrador, nom_cobrador FROM tm_cobrador WHERE id_cobrador=? AND est=1";
+        $stmt= $conn->prepare($sql);
+        $stmt->bindValue(1,$id_cobrador,PDO::PARAM_INT);
+        $stmt->execute();
+        return $result= $stmt->fetch();
     }
 }

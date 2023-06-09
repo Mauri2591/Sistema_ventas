@@ -30,28 +30,30 @@ if (isset($_SESSION['usu_id'])) {
         <h1 class="text-center">Lista de Cobradores</h1>
 
         <!------------------------   Inicio Tabla         -------------------------------->
-        <section class="card">
-            <div class="card-block">
-                <table id="tabla_cobrador" class="display table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Cel</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="id_cobrador"></td>
-                            <td id="nom_cobrador"></td>
-                            <td id="ape_cobrador"></td>
-                            <th id="cel_cobrador"></th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <div class="container">
+            <section class="card">
+                <div class="card-block">
+                    <table id="tabla_cobrador" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Cel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="id_cobrador"></td>
+                                <td id="nom_cobrador"></td>
+                                <td id="ape_cobrador"></td>
+                                <th id="cel_cobrador"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
         <!------------------------   Fin Tabla         -------------------------------->
 
         <?php require("editarCobrador.php") ?>

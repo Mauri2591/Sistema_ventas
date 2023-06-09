@@ -1,6 +1,4 @@
-function init() {
-
-}
+function init() {}
 
 function valIdClient(value) {
     let client_id = value;
@@ -37,9 +35,50 @@ function valor_id_art(value) {
 }
 
 function cantArt(val) {
-    let valor= document.getElementById("precio_prod").value;
-    total= valor*val;
-    document.getElementById("precio_total").value=total;
+    let valor = document.getElementById("precio_prod").value;
+    total = valor * val;
+    document.getElementById("precio_total").value = total;
 }
+
+function get_vendedores() {
+    $.post("../../../controller/usuario.php?op=get_select_vendedores", function (data, textStatus, jqXHR) {
+        data = JSON.parse(data)
+        $("#id_vendedor").html(data);
+    }, );
+    $.post("../../../controller/usuario.php?op=get_select_cobradores", function (data, textStatus, jqXHR) {
+        data = JSON.parse(data);
+        $("#id_cobrador").html(data)
+    }, );
+}
+get_vendedores();
+
+function selec_vendedor() {
+    let btn = document.getElementById("id_vendedor");
+    btn.addEventListener("change", () => {
+        id_vendedor = btn.value;
+        $.post("../../../controller/usuario.php?op=selec_vendedor", {id_vendedor: id_vendedor},
+            function (data, textStatus, jqXHR) {
+                data = JSON.parse(data)
+                document.getElementById("id_vendedor_valor").value = data.nom_vendedor;
+            },
+        );
+    })
+}
+selec_vendedor();
+
+function select_cobrador() {
+   let btn= document.getElementById("id_cobrador");
+   btn.addEventListener("change",()=>{
+        id_cobrador= btn.value;
+        $.post("../../../controller/usuario.php?op=select_cobrador", {id_cobrador:id_cobrador},
+            function (data, textStatus, jqXHR) {
+                data=JSON.parse(data);
+                document.getElementById("id_cobrador_valor").value=data.nom_cobrador;
+                console.log(data);
+            },
+        );
+   });
+}
+select_cobrador();
 
 init();

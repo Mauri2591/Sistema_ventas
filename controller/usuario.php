@@ -118,6 +118,22 @@ switch ($_GET['op']) {
             echo json_encode($resul);
         }
         break;
+
+    case 'get_select_cobradores':
+        $datos = $usu->get_cobradores();
+        if (is_array($datos) && count($datos) > 0) {
+            $html = '';
+            foreach ($datos as $row) {
+                $html = $html . '<option value= "' . $row['id_cobrador'] . '">' . $row['nom_cobrador'] . '</option>';
+            }
+            echo json_encode($html);
+        }
+        break;
+
+    case 'select_cobrador':
+        $datos = $usu->select_cobrador($_POST['id_cobrador']);
+        echo json_encode($datos);
+        break;
         /***************** Fin servicio cobradores *************************/
 
         /***************** Inicio servicio vendedores *************************/
@@ -150,6 +166,21 @@ switch ($_GET['op']) {
             );
             echo json_encode($resul);
         }
+        break;
+    case 'get_select_vendedores':
+        $datos = $usu->get_vendedores();
+        if (is_array($datos) && count($datos) > 0) {
+            $html = '';
+            foreach ($datos as $row) {
+                $html .= '<option value="' . $row['id_vendedor'] . '">' . $row['nom_vendedor'] . '</option>';
+            }
+            echo json_encode($html);
+        }
+        break;
+
+    case 'selec_vendedor':
+        $datos = $usu->selec_vendedor($_POST['id_vendedor']);
+        echo json_encode($datos);
         break;
         /***************** Fin servicio vendedores *************************/
 }

@@ -16,7 +16,7 @@ if (isset($_SESSION['usu_id'])) {
     <body>
         <div class="container">
             <ul class="navegacion">
-            <li class="li_nav">
+                <li class="li_nav">
                     <a class="a_nav" href="./index.php">Alta Cliente</a>
                 </li>
                 <li class="li_nav">
@@ -30,40 +30,42 @@ if (isset($_SESSION['usu_id'])) {
         <h1 class="text-center">Consultar Clientes</h1>
 
         <!------------------------   Inicio Tabla         -------------------------------->
-        <section class="card">
-            <div class="card-block">
-                <table id="tabla_cliente" class="display table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>DNI</th>
-                            <th>CUIL</th>
-                            <th>Localidad</th>
-                            <th>Dirección</th>
-                            <th>Teléfono</th>
-                            <th>Cel</th>
-                            <th>Email</th>
-                            <th>Otros</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="client_nom"></td>
-                            <td id="client_ape"></td>
-                            <td id="client_dni"></td>
-                            <th id="client_cuil"></th>
-                            <td id="client_localidad"></td>
-                            <td id="client_dire"></td>
-                            <td id="client_tel"></td>
-                            <th id="client_cel"></th>
-                            <td id="client_email"></td>
-                            <td id="client_otros_datos"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <div class="container">
+            <section class="card">
+                <div class="card-block">
+                    <table id="tabla_cliente" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <!-- <th>DNI</th> -->
+                                <th>CUIL</th>
+                                <!-- <th>Localidad</th> -->
+                                <th>Dirección</th>
+                                <!-- <th>Teléfono</th> -->
+                                <th>Cel</th>
+                                <th>Email</th>
+                                <th>Otros</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="client_nom"></td>
+                                <td id="client_ape"></td>
+                                <!-- <td id="client_dni"></td> -->
+                                <th id="client_cuil"></th>
+                                <!-- <td id="client_localidad"></td> -->
+                                <td id="client_dire"></td>
+                                <!-- <td id="client_tel"></td> -->
+                                <th id="client_cel"></th>
+                                <td id="client_email"></td>
+                                <td id="client_otros_datos"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
         <!------------------------   Fin Tabla         -------------------------------->
 
         <?php require("editarCliente.php") ?>
@@ -80,7 +82,8 @@ if (isset($_SESSION['usu_id'])) {
             });
         </script>
 
-        <script src="js/app.js"></script></script>
+        <script src="js/app.js"></script>
+        </script>
 
         <script type="text/javascript" src="getClientes.js"></script>
 
