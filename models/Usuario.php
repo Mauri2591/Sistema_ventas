@@ -1,7 +1,6 @@
 <?php
 
-class Usuario extends Conexion
-{
+class Usuario extends Conexion{
 
     public function logeo_usuario()
     {
@@ -15,7 +14,7 @@ class Usuario extends Conexion
                 exit();
             } else {
                 // $sql="SELECT * FROM tm_usuario WHERE usu_email=? AND usu_pass=? AND est=1";
-                $sql = 'call log_usu(?,?)';
+                $sql = "SELECT * FROM tm_usuario WHERE usu_email=? AND usu_pass=? and est=1";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(1, $email, PDO::PARAM_STR);
                 $stmt->bindValue(2, $pass, PDO::PARAM_STR);
@@ -54,7 +53,7 @@ class Usuario extends Conexion
         $conn = parent::conexion();
         parent::setNames();
         $pw_hash = password_hash($usu_pass, PASSWORD_DEFAULT, ['cost' => 10]);
-        $sql = "call create_usu(?,?,?)";
+        $sql = "INSERT INTO tm_usuario(usu_id, usu_rol,usu_email, usu_pass, est) VALUES (NULL,?,?,?,1)";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $usu_rol, PDO::PARAM_INT);
         $stmt->bindValue(2, $usu_email, PDO::PARAM_STR);

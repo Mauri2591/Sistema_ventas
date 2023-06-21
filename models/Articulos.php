@@ -7,7 +7,7 @@ class Articulos extends Conexion
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = "call in_prod(?,?,?,?,?,?)";
+        $sql = "INSERT INTO tm_producto (usu_id,nom_prod,marca_prod,descrip_prod,precio_prod,art_img) VALUES (?,?,?,?,?,?)";
         $dir_img = "../view/Public/Imagenes";/*ruta de las imágenes*/
         $art_img = md5(uniqid(rand(), true)) . ".jpg";
         move_uploaded_file($_FILES['art_img']['tmp_name'], $dir_img . "/" . $art_img); /*Inserto la imagen en la carpeta*/
@@ -26,7 +26,7 @@ class Articulos extends Conexion
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = 'call sel_prod()';
+        $sql = 'SELECT * FROM tm_producto';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         return $resul = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ class Articulos extends Conexion
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = 'call del_prod(?)';
+        $sql = 'DELETE FROM tm_producto WHERE id_prod=?';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $id_prod, PDO::PARAM_INT);
         $stmt->execute();
