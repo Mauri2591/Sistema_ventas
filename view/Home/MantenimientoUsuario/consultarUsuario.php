@@ -32,10 +32,12 @@ if (isset($_SESSION['usu_id'])) {
                     <thead>
                         <tr>
                             <th class="tr_table text-center" style="width: 1%;">ID</th>
-                            <th class="tr_table text-center" style="width: 10%;">Email</th>
-                            <th class="tr_table text-center" style="width: 10%;">Password</th>
+                            <th class="tr_table text-center" style="width: 5%;">Email</th>
+                            <th class="tr_table text-center" style="width: 5%;">Password</th>
+                            <th class="tr_table text-center" style="width: 10%;">Nombre</th>
+                            <th class="tr_table text-center" style="width: 10%;">Apellido</th>
                             <th class="tr_table text-center" style="width: 5%;">Rol</th>
-                            <th class="tr_table text-center" style="width: 5%;">Acción</th>
+                            <th class="tr_table text-center" style="width: 15%;">Acción</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -21,7 +21,10 @@ if (isset($_SESSION['usu_id'])) {
                 </li>
             </ul>
         </div>
-        <h1 class="text-center">Crear Cliente</h1>
+        <section class="text-center">
+            <h1>Crear Cliente</h1>
+            <p>Los campos con (*) son obligatorios</p>
+        </section>
 
         <!------------------------   Inicio Formulario         -------------------------------->
         <div class="container col-6">
@@ -30,7 +33,7 @@ if (isset($_SESSION['usu_id'])) {
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Nombre/s *</label>
-                            <input type="text" class="form-control"  autofocus placeholder="Ingrese Nombre" id="client_nom" name="client_nom">
+                            <input type="text" class="form-control" autofocus placeholder="Ingrese Nombre" id="client_nom" name="client_nom">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">Apellido/s</label>
@@ -50,7 +53,7 @@ if (isset($_SESSION['usu_id'])) {
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress2">Dirección *</label>
-                            <input type="text" class="form-control"  placeholder="Ingrese Dirección" id="client_dire" name="client_dire">
+                            <input type="text" class="form-control" placeholder="Ingrese Dirección" id="client_dire" name="client_dire">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress2">Teléfono</label>
@@ -58,7 +61,7 @@ if (isset($_SESSION['usu_id'])) {
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress2">Celular *</label>
-                            <input type="text" class="form-control"  placeholder="Ingrese Celular" id="client_cel" name="client_cel">
+                            <input type="text" class="form-control" placeholder="Ingrese Celular" id="client_cel" name="client_cel">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress2">Email</label>

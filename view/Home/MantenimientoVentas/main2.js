@@ -1,4 +1,6 @@
-function init() {}
+function init() {
+    
+}
 
 function valIdClient(value) {
     let client_id = value;
@@ -101,10 +103,11 @@ function agregar_filas() {
     }
 
     let btn_agregar = document.getElementById("insertar_filas");
+
     let form_agregar_filas = document.getElementById("form_agregar_filas");
 
     let htmlTemplate = (data, position) => {
-        console.log(data);
+        // console.log(data);
         return (`
         <p name="nueva_fila_agregar" disabled id="nueva_fila_agregar">${data}</p>
         <button type="button" class="btn_quitar_venta" onClick="clickBtn(event,${position})" id="btn_quitar_venta">x
@@ -115,31 +118,35 @@ function agregar_filas() {
         let container_fila_ventas = document.getElementById("cont");
         if (form_agregar_filas.nom_prod.value != '' || form_agregar_filas.precio_prod.value != '' ||
             form_agregar_filas.precio_venta.value != '' || form_agregar_filas.id_vendedor_valor.value != '' ||
-            form_agregar_filas.id_cobrador_valor.value != '') {
+            form_agregar_filas.id_cobrador_valor.value != '' || form_agregar_filas.total_venta != '') {
 
             let client_id = document.getElementById("client_id").value;
             let id_prod = document.getElementById("id_prod").value;
             let id_vendedor = document.getElementById("id_vendedor").value;
             let id_cobrador = document.getElementById("id_cobrador").value;
+            let total_venta = document.getElementById("total_venta");
+
 
 
             let index = addJsonElement({
                 precio_venta: form_agregar_filas.precio_venta.value,
                 client_id: client_id,
                 id_prod: id_prod,
+                id_cobrador: id_cobrador,
                 id_vendedor: id_vendedor,
-                id_cobrador: id_cobrador
+                total_venta: total_venta
             });
-            console.log(index);
+            // console.log(index);
 
             let div = document.createElement("div");
             div.classList.add("container_tabla_2");
 
-            div.innerHTML = htmlTemplate(`${form_agregar_filas.nom_prod.value}  
+            div.innerHTML = htmlTemplate(`${form_agregar_filas.nom_prod.value}
             ${form_agregar_filas.precio_prod.value}  ${form_agregar_filas.precio_venta.value}  
             ${form_agregar_filas.id_vendedor_valor.value}  ${form_agregar_filas.id_cobrador_valor.value}`, index);
 
             container_fila_ventas.prepend(div);
+
 
             form_agregar_filas.reset();
         } else {
@@ -155,22 +162,30 @@ function agregar_filas() {
 
         const jsonDiv = document.getElementById("jsonDiv");
         jsonDiv.innerHTML = `${JSON.stringify(elementos)}`;
-
+        // console.log(elementos);
+        
+        let mapElement= elementos.map((elem,index,array)=>{
+            let resul= [];
+            let nuevo=resul.unshift(elem)
+            console.log(nuevo);
+            // console.log(elem.precio_venta);
+        })
+        
         elementos = elementos.filter(elem => elem != null);
 
         let form = document.getElementById("form_agregar_filas");
         let formData = new FormData(form);
-        $.ajax({
+
+        $.ajax({    
             url: "../../../controller/ventas.php?op=nueva_venta",
             type: "post",
-            data: index,
+            data: elementos,
             contentType: false,
             processData: false,
             success: function (response) {
-                console.log(response);
+                // console.log(elementos);
             }
         });
-        container_fila_ventas.innerHTML = '';
         elementos = [];
     });
 }

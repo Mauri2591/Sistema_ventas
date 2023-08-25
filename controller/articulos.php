@@ -25,7 +25,7 @@ switch ($_GET['op']) {
             $sub_array[] = $row['marca_prod'];
             $sub_array[] = $row['descrip_prod'];
             $sub_array[] = $row['precio_prod'];
-            $sub_array[] = '<img width="55" height="55" src="' . $dir_img . $row['art_img'] . '" alt="">';
+            $sub_array[] = '<img width="55" height="55" src="' . $dir_img . $row['art_img'] . '" alt="imagen articulo '.$row['nom_prod'].'">';
             $sub_array[] = '<div class="btn-group"><button type="button" id="btnEdit" onClick="getProd('.$row['id_prod'].')" class="btn btn-warning">Editar</button><button type="button" id="btnElim" onClick="btnElim(' . $row['id_prod'] . ')" class="btn btn-danger">Eliminar</button></div>';
             $data[] = $sub_array;
         }

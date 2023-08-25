@@ -13,7 +13,7 @@ function nuevoUsuario(e) {
     e.preventDefault();
     let form = document.getElementById("form_nuevo_usu");
     let formData = new FormData(form);
-    if ($("#usu_email").val() == '' || $("#usu_pass").val() == '') {
+    if ($("#usu_email").val() == '' || $("#usu_pass").val() == '' || $("#usu_nom").val() == '' || $("#usu_ape").val() == '') {
         swal({
             title: "Error!",
             text: "Hay campos vacíos!",

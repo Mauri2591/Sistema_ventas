@@ -19,6 +19,10 @@
             <input class="mr-3" type="text" id="usu_email_editar" name="usu_email" placeholder="ingrese usuario" autofocus>
             <label for="usu_pass_editar">Pass:</label>
             <input class="ml-3 mb-3" type="text" id="usu_pass_editar" name="usu_pass" placeholder="Ingrese password">
+            <label for="usu_nom_editar">Nom:</label>
+            <input class="ml-3 mb-3" type="text" id="usu_nom_editar" name="usu_nom" placeholder="Ingrese nombre">
+            <label for="usu_ape_editar">Ape:</label>
+            <input class="ml-3 mb-3" type="text" id="usu_ape_editar" name="usu_ape" placeholder="Ingrese apellido">
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" onclick="editUsu()">Guardar cambios</button>
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

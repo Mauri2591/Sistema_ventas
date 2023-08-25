@@ -14,7 +14,7 @@ class Usuario extends Conexion{
                 exit();
             } else {
                 // $sql="SELECT * FROM tm_usuario WHERE usu_email=? AND usu_pass=? AND est=1";
-                $sql = "SELECT * FROM tm_usuario WHERE usu_email=? AND usu_pass=? and est=1";
+                $sql = "SELECT * FROM tm_usuario WHERE usu_email=? AND usu_pass=MD5(?) and est=1";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(1, $email, PDO::PARAM_STR);
                 $stmt->bindValue(2, $pass, PDO::PARAM_STR);
@@ -48,16 +48,19 @@ class Usuario extends Conexion{
         return $resul;
     }
 
-    public function insert_usuario($usu_rol, $usu_email, $usu_pass)
+    public function insert_usuario($usu_rol, $usu_email, $usu_pass,$usu_nom,$usu_ape)
     {
         $conn = parent::conexion();
         parent::setNames();
-        $pw_hash = password_hash($usu_pass, PASSWORD_DEFAULT, ['cost' => 10]);
-        $sql = "INSERT INTO tm_usuario(usu_id, usu_rol,usu_email, usu_pass, est) VALUES (NULL,?,?,?,1)";
+        // $pw_hash = password_hash($usu_pass, PASSWORD_DEFAULT, ['cost' => 10]);
+        $pass_md5=$usu_pass;
+        $sql = "INSERT INTO tm_usuario(usu_id, usu_rol,usu_email, usu_pass,usu_nom,usu_ape, est) VALUES (NULL,?,?,MD5(?),?,?,1)";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $usu_rol, PDO::PARAM_INT);
         $stmt->bindValue(2, $usu_email, PDO::PARAM_STR);
-        $stmt->bindValue(3, $pw_hash, PDO::PARAM_STR);
+        $stmt->bindValue(3, $pass_md5, PDO::PARAM_STR);
+        $stmt->bindValue(4, $usu_nom, PDO::PARAM_STR);
+        $stmt->bindValue(5, $usu_ape, PDO::PARAM_STR);
         $stmt->execute();
         return $resul = $stmt->fetch();
     }
@@ -65,7 +68,7 @@ class Usuario extends Conexion{
     {
         $conn = parent::conexion();
         parent::setNames();
-        $sql = "SELECT usu_id, usu_email, usu_pass, tm_rol_usuario.nombre_rol FROM
+        $sql = "SELECT usu_id, usu_email, usu_pass,usu_nom,usu_ape, tm_rol_usuario.nombre_rol FROM
                 tm_usuario INNER JOIN tm_rol_usuario on tm_rol_usuario.usu_rol=tm_usuario.usu_rol 
                 WHERE tm_usuario.est=1";
         $stmt = $conn->prepare($sql);
@@ -92,16 +95,19 @@ class Usuario extends Conexion{
         $stmt->execute();
         $resul = $stmt->fetch();
     }
-    public function update_usuario($usu_id, $usu_email, $usu_pass)
+    public function update_usuario($usu_id, $usu_email, $usu_pass, $usu_nom, $usu_ape)
     {
         $conn = parent::conexion();
         parent::setNames();
-        $usu_pass = password_hash($usu_pass, PASSWORD_DEFAULT, ['cost' => 10]);
-        $sql = "UPDATE tm_usuario SET usu_email=?, usu_pass=? WHERE usu_id=? AND est=1";
+        // $usu_pass = password_hash($usu_pass, PASSWORD_DEFAULT, ['cost' => 10]);
+        $pass_md5=$usu_pass;
+        $sql = "UPDATE tm_usuario SET usu_email=?, usu_pass=MD5(?), usu_nom=?, usu_ape=? WHERE usu_id=? AND est=1";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $usu_email);
-        $stmt->bindValue(2, $usu_pass);
-        $stmt->bindValue(3, $usu_id);
+        $stmt->bindValue(2, $pass_md5);
+        $stmt->bindValue(3, $usu_nom);
+        $stmt->bindValue(4, $usu_ape);
+        $stmt->bindValue(5, $usu_id);
         $stmt->execute();
         echo json_encode($stmt);
     }

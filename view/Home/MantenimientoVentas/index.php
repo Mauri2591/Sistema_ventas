@@ -17,7 +17,7 @@ if (isset($_SESSION['usu_id'])) {
         <div class="container">
             <ul class="navegacion">
             <li class="li_nav">
-                    <a class="a_nav" href="./crearVenta.php">Nueva Venta</a>
+                    <a class="a_nav" href="./crearVenta/index.php">Nueva Venta</a>
                 </li>
                 <li class="li_nav">
                     <a class="a_nav" href="../index.php">Gestión</a>
@@ -25,9 +25,6 @@ if (isset($_SESSION['usu_id'])) {
                 <li class="li_nav">
                     <a class="a_nav" href="../LogOut/">Salir</a>
                 </li>
-                <!-- <li class="li_nav">
-                    <a class="a_nav" href="../LogOut/">Salir</a>
-                </li> -->
             </ul>
         </div>
         <h1 class="text-center mt-4">Lista de Ventas realizadas</h1>

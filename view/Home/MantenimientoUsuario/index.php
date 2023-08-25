@@ -28,6 +28,8 @@ if (isset($_SESSION['usu_id'])) {
 
                 <form class="form-inline" action="" method="post" id="form_nuevo_usu">
                     <div class="container mb-3 mt-2">
+                    <input type="text" autofocus class="form-control mb-2 mr-sm-4 col-4" placeholder="Ingrese nombre" id="usu_nom" name="usu_nom">
+                    <input type="text" autofocus class="form-control mb-2 mr-sm-4 col-4" placeholder="Ingrese apellido" id="usu_ape" name="usu_ape">
                         <input type="text" autofocus class="form-control mb-2 mr-sm-4 col-4" placeholder="Ingrese email" id="usu_email" name="usu_email">
                         <input type="text" class="form-control mb-2 mr-sm-4 col-6" minlength="8" maxlength="12" placeholder="Ingrese password" id="usu_pass" name="usu_pass">
                         <div class="form-group"><span>Tipo:</span>

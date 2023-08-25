@@ -83,7 +83,9 @@ function editUsu() {
     usu_id = $("#usu_id_edit").val();
     usu_email = $("#usu_email_editar").val();
     usu_pass = $("#usu_pass_editar").val();
-    if (usu_email == '' || usu_pass == '') {
+    usu_nom = $("#usu_nom_editar").val();
+    usu_ape = $("#usu_ape_editar").val();
+    if (usu_email == '' || usu_pass == '' || usu_nom == '' || usu_ape == '') {
         swal({
             title: "Error",
             text: "Campos vacíos",
@@ -97,7 +99,9 @@ function editUsu() {
             data: {
                 usu_id: usu_id,
                 usu_email: usu_email,
-                usu_pass: usu_pass
+                usu_pass: usu_pass,
+                usu_nom:usu_nom,
+                usu_ape:usu_ape
             },
             success: function (data, textStatus, jqXHR) {
                 swal({

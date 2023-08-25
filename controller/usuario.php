@@ -36,7 +36,7 @@ switch ($_GET['op']) {
         break;
 
     case 'insert_usuario':
-        $usu->insert_usuario($_POST['usu_rol'], $_POST['usu_email'], $_POST['usu_pass']);
+        $usu->insert_usuario($_POST['usu_rol'], $_POST['usu_email'], $_POST['usu_pass'],$_POST['usu_nom'],$_POST['usu_ape']);
         break;
 
     case 'get_usuarios':
@@ -48,6 +48,8 @@ switch ($_GET['op']) {
                 $sub_array[] = $row['usu_id'];
                 $sub_array[] = $row['usu_email'];
                 $sub_array[] = $row['usu_pass'];
+                $sub_array[] = $row['usu_nom'];
+                $sub_array[] = $row['usu_ape'];
                 $sub_array[] = $row['nombre_rol'];
                 $sub_array[] = '<div class="btn-group btn-group-sm" role="group"><button type="button" onClick="verUsu(' . $row['usu_id'] . ')" class="btn btn-warning">Editar</button><button type="button" onClick="delUsu(' . $row['usu_id'] . ')" class="btn btn-danger">Eliminar</button></div>';
                 $data[] = $sub_array;
@@ -79,7 +81,7 @@ switch ($_GET['op']) {
         break;
 
     case 'update_usuario':
-        $usu->update_usuario($_POST['usu_id'], $_POST['usu_email'], $_POST['usu_pass']);
+        $usu->update_usuario($_POST['usu_id'], $_POST['usu_email'], $_POST['usu_pass'],$_POST['usu_nom'],$_POST['usu_ape']);
         break;
 
     default:
@@ -122,7 +124,7 @@ switch ($_GET['op']) {
     case 'get_select_cobradores':
         $datos = $usu->get_cobradores();
         if (is_array($datos) && count($datos) > 0) {
-            $html = '';
+            $html = '<option>Seleccionar</option>';
             foreach ($datos as $row) {
                 $html = $html . '<option value= "' . $row['id_cobrador'] . '">' . $row['nom_cobrador'] . '</option>';
             }
@@ -170,7 +172,7 @@ switch ($_GET['op']) {
     case 'get_select_vendedores':
         $datos = $usu->get_vendedores();
         if (is_array($datos) && count($datos) > 0) {
-            $html = '';
+            $html = '<option>Seleccionar</option>';
             foreach ($datos as $row) {
                 $html .= '<option value="' . $row['id_vendedor'] . '">' . $row['nom_vendedor'] . '</option>';
             }
